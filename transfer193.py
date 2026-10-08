@@ -16,8 +16,8 @@ EXPECTED = {
     "random_assignments.csv": "cc0cedde458ec0ddaad16949774a62a6505cc64e4cd016f4ba8cce5f97d56e58",
 }
 
-print("Requesting Google Drive read-only OAuth scope only.", flush=True)
-auth.authenticate_user(scopes=["https://www.googleapis.com/auth/drive.readonly"])
+print("Starting Colab authentication; inspect the consent screen and cancel unless every listed scope is Drive-scoped.", flush=True)
+auth.authenticate_user()
 creds, _ = default()
 service = build("drive", "v3", credentials=creds, cache_discovery=False)
 request = service.files().get_media(fileId=FILE_ID)
